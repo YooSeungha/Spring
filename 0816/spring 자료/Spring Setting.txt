@@ -1,0 +1,153 @@
+Spring Setting
+
+0. JDK 버전 확인
+	$> java -version
+
+1. STS 설치
+(1) spring framwork -> https://spring.io/tools 에서 다운받아 설치하거나
+(2) 준비된 자료(depth가 깊으므로 C:\에서 압축풀기 권장)설치 
+
+2. STS.ini 설정 :
+-vm
+C:\Programfiles\Java\jdk(버전)\bin\javaw.exe
+추가
+
+3. STS.exe 실행
+(workspace 를 "sts-bundle\sts-3.9.11\workspace 로 설정)
+# workspace설정 시 자세히 알아볼것 (copy를 이용할 것인가 아닌가 등등)
+
+4. 컴파일 버전 변경
+window-preferences-Java-Compile
+[JDK compilance level : 1.8(사용중인 자바 버전)으로 설정
+상세-> window -> Preferences -> Java -> Compiler -> JDK Compliance ->버전 변경
+
+5. 프로젝트 생성
+Spring Legacy Project - Spring MVC Project - 프로젝트 이름 입력 - 패키지 경로 입력
+
+6. 빌드 패스 설정
+좌측 Package Explorer에서 프로젝트 명 우클릭 - Properties - Java Build Path -
+- Libraries - JRE System Library 클릭 - Edit - Workspace default JRE 체크
+
+상세 -> Properties for 프로젝트 명(오른쪽 마우스)
+    <1> Java Build Path -> Libraries -> JRE System Library -> 버전 변경
+	
+
+7. Project Facet 설정
+프로젝트 명 우클릭 - Properties - Project Facet 중 Java의 버전을 사용중인 버전으로 변경.
+(Project Facets -> Java -> 버전 변경)
+
+8. preference - Web - CSS Files / HTML Files / JSP Files - 각각 Encoding: ISO 10646/Unicode(UTF-8) 로 설정
+
+9. pom.xml 세팅
+
+※MavenRepository : https://mvnrepository.com/
+
+1). 자바 버전 변경
+	<properties>
+		<java-version>1.8</java-version>
+		.
+		.
+		.
+	</properties>
+
+
+
+2). 스프링 버전 변경
+	<properties>
+		<java-version>1.8</java-version>
+		<org.springframework-version>5.0.7.RELEASE</org.springframework-version>
+		.
+		.
+	</properties>
+
+
+
+3). log4j 설정
+	(1) 버전 변경 및 사용하지 않는 부분 주석or제거
+	<!-- log4j			https://mvnrepository.com/artifact/log4j/log4j/1.2.17 -->
+	<dependency>
+		<groupId>log4j</groupId>
+		<artifactId>log4j</artifactId>
+		<version>1.2.17</version>
+		<!-- 
+			.
+			.
+			.
+
+			-->
+	</dependency>
+
+	(2) log4j.xml 설정 변경 후 log 인식 안 될 경우 재부팅
+	디렉터리 경로>>src\main\resources\log4jxml
+	<!-- Root Logger -->
+	<root>
+	       <priority value="info" />
+	       <appender-ref ref="console" />
+	</root>	
+
+
+4). javax.Servlet-api 버전 변경
+	<!-- javax.servlet-api	 https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api/3.1.0 -->
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>javax.servlet-api</artifactId>
+		<version>3.1.0</version>
+		<scope>provided</scope>
+	</dependency>
+
+
+
+5). junit 버전 변경 및 spring-test 추가
+	<!-- junit 			https://mvnrepository.com/artifact/junit/junit/4.12 -->
+	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>4.12</version>
+	</dependency>
+	<!-- spring-test		https://mvnrepository.com/artifact/org.springframework/spring-test -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-test</artifactId>
+		<version>${org.springframework-version}</version>
+		<scope>test</scope>
+	</dependency>	
+
+
+
+6). lombok 추가
+	<!-- lombok		https://mvnrepository.com/artifact/org.projectlombok/lombok/1.18.8 -->
+	(1) lombok.jar 파일 다운
+	(2) cmd>> java -jar lombok.jar	//STS.exe 를 선택
+	
+	<dependency>
+		 <groupId>org.projectlombok</groupId>
+		 <artifactId>lombok</artifactId>
+		 <version>1.18.8</version>
+		 <scope>provided</scope>
+	</dependency>
+
+
+7). Tomcat 서버로 변경
+	(1) Tomcat 버전 확인 후 다운로드(.zip)	 https://tomcat.apache.org/
+	(2) 압축풀기
+	(3) STS -> Window -> Preferences -> Server -> Runtime Environment -> Add -> Apache
+	     -> Apache Tomcat (사용버전) -> Next -> Tomcat 디렉터리 Browse -> Project add -> Finish
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

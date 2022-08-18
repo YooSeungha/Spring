@@ -1,0 +1,14 @@
+package soo.ct.domain;
+
+import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
+import lombok.Data;
+
+
+@Data
+public class Todo {
+	private String subject;
+	
+	@DateTimeFormat(pattern = "yyyy/mm/dd HH:mm:ss")
+	private Date cdate;
+}
