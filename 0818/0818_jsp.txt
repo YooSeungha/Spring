@@ -1,0 +1,27 @@
+JSP파일의 구성요소 && 게시판(페이징 전)
+
+1. jsp 엘리먼트
+   (1) <%@ %> : directive element (지시어)
+   
+   (2) scripting element
+       1) <% %> : scriptlet (스크립트렛)
+       2) <%=%> : Expresstion (식)
+       3) <%! %> : Declarelation (선언)
+   
+   (3) jsp action (액션 == 표준태그)
+       1) <jsp:XXX />
+   
+   (4) JSTL
+       <c:XXX/>
+   
+   (5) EL
+       ${}
+
+2. fixed template data (html)
+
+
+<Scope>
+1. Page
+2. request
+3. session
+4. application   
