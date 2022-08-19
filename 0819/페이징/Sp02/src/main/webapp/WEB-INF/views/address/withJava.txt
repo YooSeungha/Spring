@@ -1,0 +1,23 @@
+<% 
+            List<Address> list = (List<Address>)request.getAttribute("list");
+            //out.println("#list.jsp의 list: " + list);
+            if(list == null || list.size() == 0){
+         %>
+            <tr>
+               <td align='center' colspan="5">데이터가 없음</td>
+            </tr>
+         <%
+            }else{
+               for(Address address: list){
+         %>
+               <tr>
+                  <td align='center'><%=address.getSeq()%></td>
+                  <td><%=address.getName()%></td>
+                  <td><%=address.getAddr()%></td>
+                  <td><%=address.getRdate()%></td>
+                  <td align='center'><a href='del?seq=<%=address.getSeq()%>'>삭제</a></td>
+               </tr>
+         <%   
+               }
+            }
+         %>

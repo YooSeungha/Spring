@@ -1,0 +1,22 @@
+select rownum from board; -> 숫자만 출력됨
+
+select * from (elect ROWNUM rnum, aa.* from(select * from BOARD order by SEQ desc) 
+aa) where rnum>0 and runm<= 3 >> 1번째 페이지 (3개씩 출력)
+
+select * from (elect ROWNUM rnum, aa.* from(select * from BOARD order by SEQ desc) 
+aa) where rnum>3 and runm<= 6 >> 2번째 페이지
+
+#####################################################################
+
+select count(*) from board; && select max(rownum) from board; >> 총 colum 갯 수
+
+#####################################################################
+
+select * from board where seq=15; >> 하나의 컬럼 검색
+
+#####################################################################
+
+# 참고 자료 #
+https://chobopark.tistory.com/170 
+https://melonpeach.tistory.com/27
+https://taetoungs-branch.tistory.com/141?category=969271
