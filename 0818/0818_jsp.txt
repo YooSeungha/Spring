@@ -1,4 +1,4 @@
-JSP파일의 구성요소 && 게시판(페이징 전)
+JSP(Java Server Page) 구성요소 && 게시판(페이징 전)
 
 1. jsp 엘리먼트
    (1) <%@ %> : directive element (지시어)
@@ -20,8 +20,16 @@ JSP파일의 구성요소 && 게시판(페이징 전)
 2. fixed template data (html)
 
 
+서블릿 / 
+JSP  --> S --> .Class
+         (java)
+
 <Scope>
 1. Page
 2. request
 3. session
-4. application   
+4. application
+
+
+       
+       
