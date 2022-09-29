@@ -1509,10 +1509,9 @@
                     </tr>
                     <tr>
                         <th scope="row">제목</th>
-                        <td colspan="3">
-                            <input type="text" id="title" name="subject" style="width:100%"
-                            	value="${board.subject}"/>
-                        </td>
+                        <td><input type="text" id="title" name="subject" style="width:100%" value="${board.subject}"/></td>
+                        <th scope="row">파일</th>
+                        <td>${board.fname}</td>
                     </tr>
                     <tr>
                         <td colspan="4" class="view_text">

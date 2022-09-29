@@ -29,6 +29,22 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+		<!-- 파일 업로드용 resolver -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="defaultEncoding" value="UTF-8" />
+		<beans:property name="maxUploadSize" value="10485760" />
+		<!-- <beans:property name="maxUploadSizePerFile" value="2097152"/>  -->
+		<beans:property name="maxUploadSizePerFile" value="10485760"/>
+		<beans:property name="maxInMemorySize" value="10485756"/>
+	</beans:bean>
+	
+	<!-- 파일 다운로드 -->
+	<!-- <beans:bean id="fileDownloadView" class="library.site.fileset.FileDownloadView" />
+	<beans:bean id="fileViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<beans:property name="order" value="0" />
+	</beans:bean>
+	 -->
+	
 	<context:component-scan base-package="library.site.controller" />
 	<context:component-scan base-package="library.site.mapper"/>
 	<mybatis-spring:scan base-package="library.site.mapper"/>

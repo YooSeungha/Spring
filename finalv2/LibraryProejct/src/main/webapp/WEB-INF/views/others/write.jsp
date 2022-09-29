@@ -1482,10 +1482,11 @@
         	<!-- <div class="container"style="padding:5px; text-align-last: right;">
         		<a href="#" class="btn btn-dark btn-sm">글쓰기</a>
         	</div> -->
+        		
         	<div class="container">
         		<div class="write-body">
         		<h3>작성</h3>
-	        		<form action="write.do" method="POST">
+	        		<form action="write.do" method="post" enctype="multipart/form-data">
 	        		 <table>
 	        		 	<tr>
             				<td>제목</td>
@@ -1502,14 +1503,16 @@
                 			<textarea name="content" id="editor"></textarea>
             				</td>
         				</tr>
-        				
+        				<tr>
+							<td>첨부파일</td><td align="left">
+							<input type="file" multiple="multiple" name="uploadFile"/></td>
+						</tr>
     				</table>
 	   						<p><input type="submit" value="작성" style="float: right"></p>
 	    			</form>
-   
         		</div>
+        		
 			</div>
-
         	
         	
 		<!-- ---------------------------------------------------------------------- -->
@@ -1692,7 +1695,6 @@
 		<script>
 			CKEDITOR.replace('editor', content)
 			CKEDITOR.config.height = "600px";
- 
 			</script>
 	
 	

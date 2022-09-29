@@ -1,14 +1,17 @@
 package library.site.service;
 
+import java.io.*;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import library.site.domain.Board;
 import library.site.domain.BoardListResult;
 import library.site.domain.BoardVo;
 import library.site.mapper.BoardMapper;
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j;
 
 @AllArgsConstructor
 @Service
@@ -62,5 +65,5 @@ public class BoardServiceImpl implements BoardService {
 	public void review(long seq) {
 		boardMapper.review(seq);
 	}
-
+	
 }

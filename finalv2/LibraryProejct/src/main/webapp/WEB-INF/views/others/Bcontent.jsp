@@ -1506,9 +1506,9 @@
                     </tr>
                     <tr>
                         <th scope="row">제목</th>
-                        <td colspan="3">
-                            ${board.subject}
-                        </td>
+                        <td>${board.subject}</td>
+                        <th scope="row">첨부파일</th>
+                        <td>${board.fname}</td>
                     </tr>
                     <tr>
                         <td colspan="4" class="view_text" style="width:100px">
@@ -1523,7 +1523,7 @@
 				<input type="button" value="목록" onclick="location.href='Board'">
 				<input type="button" value="수정" onclick="location.href='Update?seq=${board.seq}'">
 				<input type="submit" value="삭제">
-		</td>
+			</td>
         </form>
         <!-- ADD END -->
     	</div>

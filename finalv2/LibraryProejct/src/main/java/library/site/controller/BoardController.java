@@ -1,14 +1,23 @@
+
 package library.site.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +25,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -160,7 +170,23 @@ public class BoardController {
 		return "others/write";
 	}
 	@PostMapping("write.do")
-	public String write(Board board) {
+	public String write(Board board, String fName) throws IOException {
+		
+		String fileName=null;
+		MultipartFile uploadFile = board.getUploadFile();
+//		if (!uploadFile.isEmpty()) {
+//			String ofname = uploadFile.getOriginalFilename();
+//			String ext = FilenameUtils.getExtension(ofname);	//확장자 구하기
+//			UUID uuid = UUID.randomUUID();	//UUID 구하기
+//			fName=uuid+"."+ext;
+//			uploadFile.transferTo(new File("C:\\Users\\Kosmo\\Downloads" + fName));
+//		}
+		if (!uploadFile.isEmpty()) {
+			String ofname = uploadFile.getOriginalFilename();
+			fName=ofname;
+			uploadFile.transferTo(new File("C:\\Users\\Kosmo\\Downloads" + fName));
+		}
+		board.setFileName(fName);
 		boardService.write(board);
 		return "redirect:Board?cp=1";
 	}
@@ -182,4 +208,6 @@ public class BoardController {
 		boardService.remove(seq);
 		return "redirect:Board";
 	}
+	
 }
+

@@ -2,6 +2,8 @@ package library.site.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import library.site.domain.Board;
 import library.site.domain.BoardListResult;
 
