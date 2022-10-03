@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import javafx.scene.control.Alert;
 import library.site.domain.Board;
 import library.site.domain.BoardListResult;
 import library.site.service.BoardService;
@@ -201,13 +201,28 @@ public class BoardController {
 		return mv;
 	}
 	@PostMapping("Update.do")
-	public String update(Board board) {
+	public String update(Board board, HttpServletRequest request) throws IOException{
+		String fName=null;
+		String pb_rName=null;
+		//String rName=null;
+		MultipartFile uploadFile = board.getUploadFile();
+		if (!uploadFile.isEmpty()) {
+			String ofname = uploadFile.getOriginalFilename();
+			String ext = FilenameUtils.getExtension(ofname);	//확장자 구하기
+			UUID uuid = UUID.randomUUID();	//UUID 구하기
+			fName=uuid+"."+ext;
+			uploadFile.transferTo(new File("C:\\Temp\\" + fName));
+			pb_rName = ofname;
+		}
+
+		board.setFileName(fName);
+		board.setPb_rName(pb_rName);
 		boardService.edit(board);
 		return "redirect:Board";
 	}
 	
 	@PostMapping("del.do")
-	public String remove(long pb_num) {
+	public String remove(Board board, long pb_num, HttpServletRequest reqeust) {
 		boardService.remove(pb_num);
 		return "redirect:Board";
 	}
@@ -230,11 +245,10 @@ public class BoardController {
 	    
 	    realFilename = "C:\\Temp\\" + filename;
 	    System.out.println(realFilename);
-	    File file1 = new File(realFilename);
-	    if (!file1.exists()) {
-	        return ;
+	    File file = new File(realFilename);
+	    if (!file.exists()) {
+	    	return ;
 	    }
-	     
 	    // 파일명 지정        
 	    response.setContentType("application/octer-stream");
 	    response.setHeader("Content-Transfer-Encoding", "binary;");
@@ -255,5 +269,6 @@ public class BoardController {
 	          System.out.println("FileNotFoundException : " + e);
 	    }
 	}
+
 }
 

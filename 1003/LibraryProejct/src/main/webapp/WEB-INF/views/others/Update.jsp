@@ -1484,7 +1484,7 @@
         	</div> -->
         	<div class="container">
         <!-- ADD START -->
-        <form id="frm" method="post" action="Update.do?pb_num=${board.pb_num}">
+        <form id="frm" method="post" action="Update.do?pb_num=${board.pb_num}" enctype="multipart/form-data">
         
         <!-- ADD END -->
             <table class="board_detail">
@@ -1514,10 +1514,17 @@
                         <td>${board.pb_fName}</td>
                     </tr>
                     <tr>
+                    <th>내용</th>
                         <td colspan="4" class="view_text">
                             <textarea title="내용" id="editor" name="pb_content" style="width: 100%; height: 300px;">${board.pb_content}</textarea>
                         </td>
                     </tr>
+                    <tr>
+						<td>첨부파일</td>
+						<td colspan="4" align="left">
+							<input type="file" multiple="multiple" name="uploadFile"/>
+						</td>
+					</tr>
                 </tbody>
             </table>
             <!-- ADD START -->

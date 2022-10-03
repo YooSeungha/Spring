@@ -21,7 +21,7 @@
 	    insert into PBOARD values(PBOARD_SEQ.nextval, #{mem_num, jdbcType=BIGINT}, #{pb_title}, #{pb_content}, #{pb_view}, #{pb_fName, jdbcType=VARCHAR}, #{pb_rName, jdbcType=VARCHAR}, #{pb_top, jdbcType=BIGINT}, SYSDATE )
 	</insert>
 	<update id="update" parameterType="Board">
-        update PBOARD set PB_TITLE=#{pb_title}, PB_CONTENT=#{pb_content} where PB_NUM=#{pb_num}
+        update PBOARD set PB_TITLE=#{pb_title}, PB_CONTENT=#{pb_content}, PB_FNAME=#{pb_fName, jdbcType=VARCHAR}, PB_RNAME=#{pb_rName, jdbcType=VARCHAR} where PB_NUM=#{pb_num}
 	</update>
 	<delete id="delete" parameterType="long">
 	    delete from PBOARD where PB_NUM=#{pb_num}
