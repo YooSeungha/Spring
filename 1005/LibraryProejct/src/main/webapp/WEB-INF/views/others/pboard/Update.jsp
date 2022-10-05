@@ -1511,7 +1511,7 @@
                         <th scope="row">제목</th>
                         <td><input type="text" id="title" name="pb_title" style="width:100%" value="${pboard.pb_title}"/></td>
                         <th scope="row">파일</th>
-                        <td>${pboard.pb_fName}</td>
+                        <td>${pboard.pb_fname}</td>
                     </tr>
                     <tr>
                     <th>내용</th>

@@ -23,7 +23,7 @@
  	 	}
  	.cke { height: 500px; }
     </style>
-     
+    
     
     <!-- Title -->
     <title>책 4조 도서관</title>
@@ -1486,7 +1486,7 @@
         	<div class="container">
         		<div class="write-body">
         		<h3>작성</h3>
-	        		<form action="edit.do" method="post" enctype="multipart/form-data">
+	        		<form name="wform" action="edit.do" method="post" enctype="multipart/form-data">
 	        		 <table>
 	        		 	<tr>
             				<td>제목</td>
@@ -1508,13 +1508,14 @@
 							<input type="file" multiple="multiple" name="uploadFile"/></td>
 						</tr>
     				</table>
-	   						<p><input type="submit" value="작성" style="float: right"></p>
+	   						<p>
+	   						<input type="button" value="취소" id=btnSave onclick="location.href='PBoard'" style="float: right">
+	   						<input type="submit" value="작성" style="float: right">
+	   						</p>
 	    			</form>
         		</div>
         		
 			</div>
-        	
-        	
 		<!-- ---------------------------------------------------------------------- -->
         	
        	</div>
@@ -1691,6 +1692,7 @@
     		    language: "ko"
     		  } );
 		</script>-->
+		
 		<script src="/js/ckeditor/ckeditor.js"></script>
 		<script>
 			CKEDITOR.replace('editor', content)

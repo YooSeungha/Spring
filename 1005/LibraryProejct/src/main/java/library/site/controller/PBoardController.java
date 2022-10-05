@@ -175,7 +175,6 @@ public class PBoardController {
 	}
 	@PostMapping("edit.do")
 	public String write(PBoard pboard, HttpServletRequest request, HttpSession session) throws IOException {
-		
 		String fName=null;
 		String pb_rName=null;
 		//String rName=null;
@@ -189,8 +188,8 @@ public class PBoardController {
 			pb_rName = ofname;
 		}
 
-		pboard.setFileName(fName);
-		pboard.setPb_rName(pb_rName);		
+		pboard.setPb_fname(fName);
+		pboard.setPb_rname(pb_rName);		
 		pboardService.write(pboard);
 		return "redirect:PBoard?cp=1";
 	}
@@ -216,8 +215,8 @@ public class PBoardController {
 			pb_rName = ofname;
 		}
 
-		pboard.setFileName(fName);
-		pboard.setPb_rName(pb_rName);
+		pboard.setPb_fname(fName);
+		pboard.setPb_rname(pb_rName);
 		pboardService.edit(pboard);
 		return "redirect:PBoard";
 	}
@@ -229,7 +228,7 @@ public class PBoardController {
 	}
 	@GetMapping("download.do")
 	public void download(HttpServletResponse response, HttpServletRequest request) {
-	 	String filename =request.getParameter("pb_fName");
+	 	String filename =request.getParameter("pb_fname");
 	    String realFilename="";
 	    System.out.println(filename);
 	    try {
@@ -274,7 +273,7 @@ public class PBoardController {
 	@GetMapping("logout.do")
 	public String logOut(HttpSession session) {
 		session.invalidate();
-		return "redirect:/";
+		return "redirect:PBoard";
 	}
 
 }

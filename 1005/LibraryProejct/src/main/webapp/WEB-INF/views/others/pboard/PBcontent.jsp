@@ -1500,7 +1500,7 @@
                     </tr>
                     <tr>
                         <th scope="row">작성자</th>
-                        <td></td>
+                        <td>${pboard.mem_num}</td>
                         <th scope="row">작성일</th>
                         <td >${pboard.pb_rdate}</td>
                     </tr>
@@ -1510,8 +1510,8 @@
                          <th scope="row">첨부파일</th>
                          
                        		<td>
-                       		<c:if test="${!empty pboard.pb_fName}">
-                       			<a href="download.do?pb_fName=${pboard.pb_fName}">${board.pb_rName}"</a>
+                       		<c:if test="${!empty pboard.pb_fname}">
+                       			<a href="download.do?pb_fname=${pboard.pb_fname}">${pboard.pb_rname}</a>
                        		</c:if>	
                        		</td>
 						

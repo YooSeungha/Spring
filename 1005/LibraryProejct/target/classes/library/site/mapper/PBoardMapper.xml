@@ -18,7 +18,7 @@
 	</select>
 	
 	<insert id="insert" parameterType="PBoard">
-	    insert into PBOARD values(PBOARD_SEQ.nextval, #{mem_num, jdbcType=BIGINT}, #{pb_title}, #{pb_content}, #{pb_view}, #{pb_top, jdbcType=BIGINT}, SYSDATE )
+	    insert into PBOARD values(PBOARD_SEQ.nextval, #{mem_num, jdbcType=BIGINT}, #{pb_title}, #{pb_content}, #{pb_view}, #{pb_top, jdbcType=BIGINT}, SYSDATE, #{pb_fname, jdbcType=VARCHAR},#{pb_rname, jdbcType=VARCHAR} )
 	</insert>
 	<update id="update" parameterType="PBoard">
         update PBOARD set PB_TITLE=#{pb_title}, PB_CONTENT=#{pb_content} where PB_NUM=#{pb_num}

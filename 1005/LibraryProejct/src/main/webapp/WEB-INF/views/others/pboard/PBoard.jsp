@@ -3,6 +3,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+ <style type="text/css">
+    table {
+	    width: 100%;
+	    border-top: 1px solid #663300;
+	    border-collapse: collapse;
+	    border-width:2px;
+  		}
+  	th{
+  		background-color: #CCCCCC;
+  	}
+    th, td {
+    	border-bottom: 1px solid #dddddd;
+    	border-left: 1px solid #dddddd;
+    	padding: 10px;
+ 		}
+  		th:first-child, td:first-child {
+    	border-left: none;
+ 	 	} 	 	
+    </style>
     <!-- Title -->
     <title>책 4조 도서관</title>
 
@@ -1360,7 +1380,7 @@
 								</c:when>
 								<c:when test="${catgo eq 'mem_num'}">
 									<option value="pb_title">제목</option>
-									<option value="meme_num" selected>글쓴이</option>
+									<option value="mem_num" selected>글쓴이</option>
 									<option value="pb_content">내용</option>
 								</c:when>
 								<c:when test="${catgo eq 'pb_content'}">

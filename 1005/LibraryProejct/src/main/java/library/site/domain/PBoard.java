@@ -22,23 +22,11 @@ public class PBoard {
 	private long pb_view;
 	private long pb_top;
 	
-	private String pb_fName;
-	private String pb_rName;
+	private String pb_fname;
+	private String pb_rname;
 	private MultipartFile uploadFile; 
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd hh:mm:ss", timezone="Asia/Seoul")
 	private Date Pb_rdate;
 	
-	public MultipartFile getUploadFile() {
-		return uploadFile;
-	}
-	public void setUploadFile(MultipartFile uploadFile) {
-		this.uploadFile = uploadFile;
-	}
-	public String getFileName() {
-		return pb_fName;
-	}
-	public void setFileName(String fName) {
-		this.pb_fName = fName;
-	}
 }
