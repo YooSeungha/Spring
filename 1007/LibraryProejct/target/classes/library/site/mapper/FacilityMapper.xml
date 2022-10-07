@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="library.site.mapper.FacilityMapper"> 
+  	<select id="book_loc" parameterType="long" resultType="String">
+	    select F_NAME from FACILITY where F_NUM=#{book_fnum}
+	</select>	
+	<select id="book_floor" parameterType="long" resultType="long">
+	    select F_FLOOR from FACILITY where F_NUM=#{book_fnum}
+	</select>
+	<select id="nameList" parameterType="long" resultType="String">
+	    select F_NAME from FACILITY order by F_NUM asc
+	</select>
+ </mapper>

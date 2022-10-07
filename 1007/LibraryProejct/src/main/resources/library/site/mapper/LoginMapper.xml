@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+   <mapper namespace="library.site.mapper.LoginMapper">
+   	
+   	<!-- 회원가입 -->
+   	<insert id="signUp" parameterType="Member">
+   		INSERT INTO MEMBER values(MEMBER_SEQ.nextval, #{mem_email}, #{mem_pass}, #{mem_phone}, #{mem_id}, #{mem_name}, '2', 'normal', sysdate, sysdate)
+   	</insert>
+   	
+   	<!-- 네이버 회원가입 전용 -->
+   	<insert id="NaverSignUp" parameterType="Member">
+   		INSERT INTO MEMBER values(MEMBER_SEQ.nextval, #{mem_email}, #{mem_pass}, #{mem_phone}, #{mem_id}, #{mem_name}, '2', 'naver', sysdate, sysdate)
+   	</insert>
+   	 	
+   	<!-- 이메일 중복확인 -->
+   	<select id="emailCheck" resultType="int" parameterType="String">
+   		select count(mem_email) from MEMBER where mem_email=#{mem_email}
+   	</select>
+   	
+   	<!-- 핸드폰 중복확인 -->
+   	<select id="phoneCheck" resultType="int" parameterType="String">
+   		select count(mem_phone) from MEMBER where mem_phone=#{mem_phone}
+   	</select>
+   	
+   	<!-- 아이디 중복확인 -->
+   	<select id="idCheck" resultType="int" parameterType="String">
+   		select count(mem_id) from MEMBER where mem_id=#{mem_id}
+   	</select>
+   	
+   	<!-- 로그인  -->
+   	<select id="login" resultType="Member" parameterType="Member" >
+   		select * from member where mem_email=#{mem_email} AND mem_pass=#{mem_pass}
+   	</select>
+   	
+   	<!-- 네이버 로그인 시 패스워드 값 가져오기  -->
+   	<select id="naverLogin" resultType="Member" parameterType="String" >
+   		select * from member where mem_email=#{mem_email}
+   	</select>
+   	
+   	<!-- 마이페이지 정보 넘기기 -->
+	<select id="mypage" resultType="Member" parameterType="long">
+		select * from MEMBER where mem_num=#{mem_num}
+	</select>
+   	
+   	<!-- 핸드폰으로 계정찾기 -->
+   	<select id="phoneAccount" resultType="String" parameterType="String">
+   		select mem_email from MEMBER where mem_phone=#{mem_phone}
+   	</select>
+   	
+   	<!-- 이메일로 비밀먼호찾기 -->
+   	<select id="findPass" resultType="String" parameterType="String">
+   		select mem_pass from MEMBER where mem_email=#{mem_email}
+   	</select>
+   	
+   	<!-- 회원 탈퇴 -->
+   	<delete id="deleteMember" parameterType="Member">
+   		delete from member where mem_email=#{mem_email} and mem_pass=#{mem_pass}
+   	</delete>
+   	
+   	<!-- 회원 탈퇴 및 비밀번호 체크 -->
+   	<select id="passCheck" resultType="int" parameterType="Member">
+   		select count(mem_pass) from MEMBER where mem_email=#{mem_email} and mem_pass=#{mem_pass}
+   	</select>
+   	
+   	<!-- 회원 수정 ( PASSWORD ) -->
+   	<update id="passUpdate" parameterType="Member">
+   		update MEMBER set mem_pass=#{mem_pass} where mem_email=#{mem_email}
+   	</update>
+   	
+   </mapper>
