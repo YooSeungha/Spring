@@ -1462,7 +1462,7 @@
 	        				<c:if test="${pboard.pb_top == 1 }">
 	        				<tr>
 	        					<td style="text-align:center" >
-	        						<img src="/img/public.png" alt="공지" style="max-width: 20px;" ></img>
+	        						<img src="/img/public.png" alt="공지" style="max-width: 20px;"></img>
 	        					</td>
 	        					<td>
 	        						<a href="PBcontent?pb_num=${pboard.pb_num}"><strong>${pboard.pb_title}</strong></a>
@@ -1479,6 +1479,7 @@
         			
         			<tbody>
         			<c:forEach items="${listResult.list}" var="pboard">
+        				<c:if test="${pboard.pb_top != 1 }">
         				<tr>
 	        				<td style="text-align:center">${pboard.pb_num}</td>
 	        				<td>
@@ -1495,6 +1496,7 @@
 	        				<td style="text-align:center">${pboard.pb_rdate}</td>
 	        				<td style="text-align:center">${pboard.pb_view}</td>
 	        			</tr>
+	        			</c:if>
 	        		</c:forEach>
         			</tbody>
         			</table>
