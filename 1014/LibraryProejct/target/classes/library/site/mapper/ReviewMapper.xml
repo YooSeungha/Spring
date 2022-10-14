@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="library.site.mapper.ReviewMapper">
+	<select id="Reviewread" resultType="Review" parameterType="long">
+		select * from review where seq=#{seq}
+	</select>
+	
+	<insert id="ReviewCreate" parameterType="Review">
+		INSERT INTO review (num,seq,content,writer,regdate) VALUES (num_seq.nextval,#{seq},#{content},#{writer},SYSDATE)
+	</insert>
+
+</mapper>
