@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="Book" type="library.site.domain.Book"/>
+		<typeAlias alias="LibraryBook" type="library.site.domain.LibraryBook"/>
+		<typeAlias alias="RentalBook" type="library.site.domain.RentalBook"/>
+		<typeAlias alias="Member" type="library.site.domain.Member"/>
+		<typeAlias alias="BookVo" type="library.site.domain.BookVo"/>
+		<typeAlias alias="Board" type="library.site.domain.Board"/>
+		<typeAlias alias="BoardVo" type="library.site.domain.BoardVo"/>
+		<typeAlias alias="Review" type="library.site.domain.Review"/>
+		<typeAlias alias="PBoard" type="library.site.domain.PBoard"/>
+		<typeAlias alias="PBoardVo" type="library.site.domain.PBoardVo"/>
+		<typeAlias alias="uploadFile" type="library.site.domain.uploadFile"/>
+	</typeAliases>
+	<mappers>
+		 
+	</mappers>
+</configuration>
