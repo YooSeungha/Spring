@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="library.site.mapper.BookSearchMapper"> 
+  	<select id="list" resultType="LibraryBook">
+	    select * from BOOK order by BOOK_NUM desc
+	</select>
+	<select id="selectPerPage" resultType="LibraryBook" parameterType="BookVo">
+	     <![CDATA[
+	     select * from (select ROWNUM rnum, aa.* from (select * from BOOK order by BOOK_NUM desc) aa)
+	     where rnum>#{startRow} and rnum<=#{endRow}
+	     ]]>
+	</select>
+	<select id="selectCount" resultType="long">
+	     select nvl(max(ROWNUM), 0) from BOOK
+	</select>
+	<select id="select" parameterType="String" resultType="LibraryBook">
+	    select * from BOOK where BOOK_ISBN=#{isbn}
+	</select>
+	<select id="select_num" parameterType="long" resultType="LibraryBook">
+	    select * from BOOK where BOOK_NUM=#{book_num}
+	</select>
+	<select id="selectByName" resultType="LibraryBook" parameterType="String">
+	<![CDATA[
+		select * from BOOK where BOOK_TITLE like '%'||#{title}||'%' and ROWNUM<=10 order by BOOK_TITLE 
+		]]>
+	</select>
+ </mapper> 
