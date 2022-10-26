@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="library.site.mapper.PBoardMapper">
+	<select id="selectPerPage" resultType="PBoard" parameterType="PBoardVo">
+	     <![CDATA[
+	     select * from (select ROWNUM rnum, aa.* from (select * from PBOARD ORDER BY PB_TOP desc, PB_NUM desc) aa)
+	     where rnum>#{startRow} and rnum<=#{endRow}
+	     ]]>
+	</select>
+	
+	<select id="selectBySeq" resultType="PBoard" parameterType="long">
+	     select * from PBOARD where PB_NUM=#{pb_num} 
+	</select>
+	<select id="selectCount" resultType="long">
+	     select nvl(max(ROWNUM),0) from PBOARD
+	</select>
+	<select id="totaldb" resultType="long">
+		select count(distinct pb_num) from PBOARD
+	</select>
+	<insert id="insert" parameterType="PBoard">
+	    insert into PBOARD values(PBOARD_SEQ.nextval, #{mem_num, jdbcType=BIGINT}, #{pb_title}, #{pb_content}, #{pb_view}, #{pb_top, jdbcType=BIGINT}, SYSDATE)
+	</insert>
+	<update id="update" parameterType="PBoard">
+        update PBOARD set PB_TITLE=#{pb_title}, PB_CONTENT=#{pb_content}, PB_TOP=#{pb_top} where PB_NUM=#{pb_num}
+	</update>
+	<delete id="delete" parameterType="long">
+	    delete from PBOARD where PB_NUM=#{pb_num}
+	</delete>
+	
+	<update id="review" parameterType="long">
+		UPDATE PBOARD SET PB_VIEW = PB_VIEW + 1 where PB_NUM = #{pb_num}
+	</update>
+		
+	<select id="selectPerPageByCatgo" resultType="PBoard" parameterType="PBoardVo">
+	     <![CDATA[
+	     select * from (select ROWNUM rnum, aa.* from (select * 
+	     from PBOARD where ${catgo} like '%'||#{keyword}||'%' order by PB_TOP desc, ${catgo},  PB_NUM desc) aa)
+	     where rnum>#{startRow} and rnum<=#{endRow}
+	     ]]>
+	</select>
+	<select id="selectCountByCatgo" resultType="long" parameterType="PBoardVo">
+	     select nvl(max(ROWNUM),0) from PBOARD where ${catgo} like '%'||#{keyword}||'%'
+	</select>
+	<select id="movePage" parameterType="long" resultType="PBoard">
+		<![CDATA[
+		select * from (select pb_num, LEAD(pb_num,1) over(order by pb_num) AS next,
+		LAG(pb_num,1) over(order by pb_num) AS last,
+		pb_title,
+		LEAD(pb_title,1) over(order by pb_num) AS nexttitle,
+		LAG(pb_title,1) over(order by pb_num) AS lasttitle
+		from PBOARD
+		order by pb_num desc) where pb_num = #{pb_num}
+			]]>
+	</select>
+	
+	<insert id="uploadFile" parameterType="Hashmap">
+		insert into MP_FILE values (f_num_seq.nextval, #{f_rname}, #{f_fname}, SYSDATE,
+		<choose>
+			<when test="pb_num == null">
+				(select LAST_NUMBER -1 from USER_SEQUENCES where sequence_name='PBOARD_SEQ'))
+			</when>
+			<otherwise>
+				#{PBOARD_SEQ.currval})
+			</otherwise>		
+		</choose>
+	</insert>
+	<select id="fileList" resultType="uploadFile" parameterType="long">
+    	 select * from MP_FILE where PB_NUM=#{pb_num} 
+	</select>
+	<insert id="updateFile" parameterType="hashMap">
+       insert into MP_FILE values (f_num_seq.nextval, #{f_rname}, #{f_fname}, SYSDATE,
+		<if test="pb_num != null">
+			#{pb_num})
+		</if>		
+	</insert>
+	<delete id="deleteFile" parameterType="long">
+	    delete from MP_FILE where PB_NUM=#{pb_num}
+	</delete>
+	<delete id="delFile" parameterType="long">
+		delete from MP_FILE where F_NUM=#{f_num}
+	</delete>
+	
+	<select id="notice" resultType="PBoard" >
+		<![CDATA[select * from (select * from PBoard where PB_TOP=1 order by PB_NUM desc)
+		where ROWNUM <=3 order by PB_NUM desc]]>
+	</select>
+	
+	<select id="newlist" resultType="PBoard">
+		 <![CDATA[select * from (select * from PBOARD where pb_top = 0 order by PB_RDATE desc) where rownum <=4]]>
+	</select>
+</mapper>

@@ -1,0 +1,144 @@
+@font-face {
+    font-family: 'SUIT-Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Medium.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+.section-header {
+	margin-top:25px;
+	margin-bottom:15px;
+}
+
+.frontpage-section .section-title {
+	font-size: 25px;
+	color: #000;
+	font-weight: 500;
+	margin-bottom: 0;
+	line-height: 1;
+}
+
+.frontpage-section {
+	border: 0;
+	box-sizing: content-box;
+	padding-left: 10px;
+}
+
+.more {
+    color: #7A8087 !important;
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: block;
+    position: relative;
+    line-height: 1;
+    transition: color .15s ease;
+    text-decoration: none !important;
+}
+
+.frontpage-notice-main {
+	flex: 0 1 48%;
+	max-width: 100%;
+}
+.frontpage-notice-other {
+	flex: 0 1 48%;
+	max-width: 100%;
+}
+
+.frontpage-notice ul {
+	padding-left: 0;
+	margin-bottom: 0;
+}
+.frontpage-notice ul > li {
+	margin-bottom: 0.3125rem;
+}
+.frontpage-notice ul > li > a {
+	display: block;
+	color: #000;
+	font-size: 17px;
+	flex-basis: calc(100% - 3.125rem);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	position: relative;
+	font-family: 'SUIT-Medium';
+}
+.frontpage-notice ul > li > a > i {
+	color: #987C4C;
+	font-size: 1.365rem;
+	display: inline-block;
+	vertical-align:middle;
+}
+.frontpage-notice ul > li > span {
+	display: block;
+	font-size: 0.8125rem;
+	line-height: 1;
+	color: #979797;
+	flex-basis: 3.125rem;
+	text-align: right;
+}
+
+
+@media (min-width: 1230px){
+.frontpage-notice {
+    flex: 0 1 calc(100% - 46.25rem);
+    max-width: calc(100% - 5rem);
+   
+}
+
+@media (min-width: 768px) and (max-width: 1229px) {
+	.frontpage-section-group {
+		margin-top: 0.9375rem;
+	}
+	.frontpage-news-notice-info > .container {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+	.frontpage-news-notice-info .frontpage-news {
+		flex: 0 0 48%;
+		max-width: 48%;
+		order: 1;	
+	}
+	.frontpage-news-notice-info .frontpage-infographic {
+		flex: 0 0 48%;
+		max-width: 48%;
+		order: 2;
+	}
+	.frontpage-news-notice-info .frontpage-notice {
+		flex: 0 0 100%;
+		max-width: 100%;
+		padding-left: 0;
+		padding-right: 0;
+		order: 3;
+	}
+	.frontpage-notice {
+		display: flex;
+		justify-content: space-between;
+	}
+	.frontpage-notice .frontpage-notice-main {
+		flex: 0 1 48%;
+		max-width: 100%;
+	}
+	.frontpage-notice .frontpage-notice-other {
+		flex: 0 1 48%;
+		max-width: 100%;
+	}
+	.frontpage-hours {
+		flex: 0 0 48%;
+		max-width: 48%;
+		padding: 0;
+	}
+	.frontpage-video {
+		flex: 0 0 48%;
+		max-width: 48%;
+		display: flex;
+		align-items: center;
+		background-color: #000;
+		padding: 0;
+	}
+	
+}
+
+

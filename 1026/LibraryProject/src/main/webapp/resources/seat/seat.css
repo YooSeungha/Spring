@@ -1,0 +1,143 @@
+/* (A) SEAT & "COLOR CODE" */
+.seat {
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 10px;
+  background: #f1f1f1;
+}
+.taken { background: #df0000; color: #fff; }
+.selected {
+	/* background: #00BFFF; */
+	  box-shadow: 0px 0px 0px 5px #00BFFF;
+}
+
+.wrapper{
+    width:300px;
+    margin:auto;
+}
+/* (占쎌뵬獄쏆꼹�읂占쎌뵠筌욑옙)占쎌쁽�뵳占� 甕곌쑵�뱣 �빊遺쏙옙 */
+.buttons {
+    margin: 10%;
+    text-align: center;
+}
+.btn-hover {
+    width: 200px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:focus {
+    outline: none;
+}
+.btn-hover.color-9 {
+    /* background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed); */
+    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+.btn-hover2 {
+    width: 200px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+    cursor: pointer;
+    margin: auto;
+    display: block;
+    height: 55px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+    background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+    color: #fff;
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover2:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover2:focus {
+    outline: none;
+}
+.btn-hover2.color-9 {
+    /* background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed); */
+    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+
+/* (B) SEATS LAYOUT */
+#layout {
+  max-width: 800px;
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  grid-gap: 10px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-right: 0px;
+  margin-left: 5%;
+}
+
+/* (C) LEGEND */
+#legend {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 50px auto ;
+  margin-left: 5%;
+}
+#legend .txt {
+  display: flex;
+  align-items: center;
+}
+
+/* (D) SAVE */
+#save {
+  font-size: 20px;
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: 0;
+  color: #fff;
+  background: #00479f;
+}
+
+/* (X) DOES NOT MATTER */
+* {
+  font-family: arial, sans-serif;
+  box-sizing: border-box;
+    
+}

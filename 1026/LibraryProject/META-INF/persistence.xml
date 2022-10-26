@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="LibraryProejct">
+	 <class>library.site.domain.LibraryBook</class>
+	 <class>library.site.domain.Facility</class>
+	 <class>library.site.domain.Classification</class>	  
+	 <class>library.site.domain.RentalBook</class>
+	 <class>library.site.domain.BookRequestDAO</class>
+	 <class>library.site.domain.BookReviews</class>
+	 <class>library.site.domain.BookReviewsLog</class>
+	 <class>library.site.domain.BookFavorite</class>	 
+	 <class>library.site.domain.ReviewJPA</class>
+	 <class>library.site.domain.Board</class>
+	 <class>library.site.domain.Member</class>	
+	 <class>library.site.domain.DvdDAO</class>
+
+       <exclude-unlisted-classes>true</exclude-unlisted-classes>
+	<properties>
+			<property name="hibernate.dialect"
+				value="org.hibernate.dialect.Oracle12cDialect" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.use_sql_comments" value="true" />
+			<property name="hibernate.enable_lazy_load_no_trans" value="true" />
+			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+            <property name="javax.persistence.jdbc.user" value="team4"/>
+            <property name="javax.persistence.jdbc.password" value="team4"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:log4jdbc:oracle:thin:@192.168.0.125:1521:JAVA"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+			<property name="hibernate.hbm2ddl.auto" value="create"/>
+		</properties>
+	</persistence-unit>
+</persistence>

@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: LibraryProejct
+Bundle-SymbolicName: LibraryProejctNow
+Bundle-Version: 1.0.0.qualifier
+Export-Package: library.site.controller,
+ library.site.domain,
+ library.site.mapper,
+ library.site.service

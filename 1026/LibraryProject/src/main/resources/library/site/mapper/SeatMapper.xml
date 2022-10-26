@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="library.site.mapper.SeatMapper">
+<!-- Seat -->
+	<select id="selectSeat" resultType="Seat" parameterType="Seat">
+	    select * from seat where (seat_use=#{seat_use} and f_num=#{f_num})
+	</select>
+	
+	<select id="selectTakenAll" resultType="Seat" parameterType="long">
+	    select * from seat where seat_seq=#{seat_seq}
+	</select>
+	
+	<insert id="insertSeat" parameterType="Seat">
+		insert into seat values(seat_seq.nextval, #{f_num}, '', #{seat_num})
+	</insert>
+	
+	<delete id="deleteSeat" parameterType="Seat">
+		delete from seat where f_num=#{f_num}
+	</delete>
+	
+	<update id="updateSeat" parameterType="Seat">
+        update seat set seat_use=#{seat_use} where (seat_num=#{seat_num} and f_num=#{f_num})
+	</update>
+	
+<!-- SeatTime -->	
+	<insert id="insertTime" parameterType="SeatTime">
+		insert into seattime values(SEATTIME_SEQ.nextval
+		, #{seat_seq}
+		, to_date(#{seat_time},'YYYY-MM-DD HH24:MI:SS'), ',selected')
+	</insert>
+	<select id="selectSeatTime" resultType="SeatTime" parameterType="Seat">
+	    select * from seattime where seat_seq = (select seat_seq from seat where (seat_num=#{seat_num} and f_num=#{f_num}))
+	    and seat_time >= sysdate
+	</select>
+	<select id="selectSeatSeq" resultType="long" parameterType="Seat">
+		select seat_seq from seat where seat_num=#{seat_num} and f_num=#{f_num}
+	</select>
+	<update id="updateSeatTimeAll" parameterType="SeatTime">
+		update seattime set seat_time=to_date(#{seat_time},'YYYY-MM-DD HH24:MI:SS') where seat_seq=#{seat_seq} and seat_time=to_date(#{before_time},'YYYY-MM-DD HH24:MI:SS')
+	</update>
+	<update id="updateSeatTime" parameterType="SeatTime">
+		update seattime set seat_time_use=#{seat_time_use} where seat_seq=#{seat_seq} and seat_time=#{seat_time}
+	</update>
+	<select id="selectTimeBySeq" resultType="String">
+		select seat_time from seattime where time_seq=2665
+	</select>
+	
+<!-- Reservation -->
+	<insert id="insertRez" parameterType="Reservation">
+		insert into reservation values(reservation_seq.nextval, #{mem_num}, #{seat_seq}
+		, to_date(#{res_start},'YYYY-MM-DD HH24:MI:SS')
+		, to_date(#{res_end},'YYYY-MM-DD HH24:MI:SS'))
+	</insert>
+	<select id="selectSeatRez" resultType="long">
+	<![CDATA[
+		select seat_seq from reservation where (res_start <= sysdate and res_end > sysdate)
+	]]>
+	</select>
+	<select id="selectTime" resultType="Reservation" parameterType="HashMap">
+		select * from reservation where seat_seq = #{seq} and res_start > to_date(#{today},'YYYY-MM-DD HH24:MI:SS')
+	</select>
+	<select id="selectTimeBetween" resultType="String" parameterType="Reservation">
+		<![CDATA[
+		select res_start from reservation where 
+		(res_start >= to_date(#{res_start},'YYYY-MM-DD HH24:MI:SS') and res_start <= to_date(#{res_end},'YYYY-MM-DD HH24:MI:SS')) 
+		and seat_seq = #{seat_seq}
+		]]>
+	</select>
+	<select id="selectTimeByMem" resultType="Reservation" parameterType="HashMap">
+	<![CDATA[
+		select * from reservation where (mem_num = #{mem_num} and res_start >= sysdate)
+		or (mem_num = #{mem_num} and res_start <= sysdate and res_end >= sysdate)
+	]]>
+	</select>
+	<update id="updateTime" parameterType="HashMap">
+		update reservation set res_start=to_date(#{update_start},'YYYY-MM-DD HH24:MI:SS'),
+		res_end = to_date(#{update_end},'YYYY-MM-DD HH24:MI:SS'),
+		seat_seq = #{seat_seq} 
+		where res_start = to_date(#{rez_now},'YYYY-MM-DD HH24:MI:SS') and
+		mem_num = #{mem_num}
+	</update>
+	<delete id="deleteRez" parameterType="long">
+		delete from reservation where res_num = #{res_num}
+	</delete>
+</mapper>   

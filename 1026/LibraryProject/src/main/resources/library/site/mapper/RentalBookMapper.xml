@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="library.site.mapper.RentalBookMapper"> 
+  	<select id="insert"  parameterType="RentalBookDAO">
+	    insert into RENTAL values(RENTAL_SEQ.nextval, #{mem_num}, #{book_num}, SYSDATE, #{ren_return}, 0)
+	</select>	
+	<select id="select"  parameterType="long" resultType="RentalBookDAO">
+	    select * from RENTAL where BOOK_NUM=#{book_num}
+	</select>	
+	<select id="selectRental"  parameterType="hashMap" resultType="RentalBookDAO">
+	    select * from RENTAL where BOOK_NUM=#{book_num} and MEM_NUM=#{mem_num}
+	</select>	
+	<select id="selectCount"  parameterType="long" resultType="long">
+	    select nvl(max(ROWNUM), 0) from RENTAL where BOOK_NUM=#{book_num} and REN_STAT != 2 
+	</select>
+ </mapper> 
